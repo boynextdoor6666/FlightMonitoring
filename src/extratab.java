@@ -25,14 +25,14 @@ public class extratab extends javax.swing.JFrame {
 		initComponents();
 	}
     
-	//Uçuş Threadleri başlatılır.
+
 	public void startFlightThreads(ArrayList<Flight> flights) {
 		for(Flight tmp: flights) {
 			tmp.start();
 		}
 	}
 
-	//Sistem saatini gösterirken kullanılacak değişkenler ilklendirilir.
+
     public static Calendar cal = Calendar.getInstance();
     public static Calendar exTime = Calendar.getInstance();
 	public void initTimes(Calendar simtime) {
@@ -47,7 +47,7 @@ public class extratab extends javax.swing.JFrame {
 		exTime.set(Calendar.DAY_OF_WEEK, simtime.get(Calendar.DAY_OF_MONTH));
 	}
     
-	//İzin isteyen uçuş olup olmadığını kontrol eden thread.
+
     public Thread permission_control = new Thread( new Runnable() {
     	
     	public void run() {
@@ -234,9 +234,9 @@ public class extratab extends javax.swing.JFrame {
 
     private void flight_tableMouseClicked(java.awt.event.MouseEvent evt) {                                          
         // TODO add your handling code here:
-    }                                         
-    
-    //Dosyadan okuyarak arayüzdeki tabloyu doldurur.
+    }
+
+    //Заполняет таблицу в интерфейсе, читая из файла.
     @SuppressWarnings("unchecked")
 	public void fillTable() {
     	DefaultTableModel model = (DefaultTableModel) flight_table.getModel();
@@ -258,8 +258,8 @@ public class extratab extends javax.swing.JFrame {
 			e.printStackTrace();
 		}	
     }
-    
-    //Uçuşlar üzerinde yapılan her değişiklikten sonra listeyi tekrar dosyaya yazar.
+
+    //Записывает список в файл заново после каждого изменения, сделанного в рейсах.
     public void writeFile(ArrayList<Flight> flights) {
     	
     	String fileName = "src/flights.dat";
@@ -271,8 +271,8 @@ public class extratab extends javax.swing.JFrame {
 			e.printStackTrace();
 		}	
     }
-    
-    //Uçakların status değişimlerini tabloya yansıtmak için sürekli tabloyu günceller.
+
+    //Непрерывно обновляет таблицу, чтобы отразить изменения статуса самолета.
     public void refreshTable(){
     	DefaultTableModel model = (DefaultTableModel) flight_table.getModel();
 		int i = 0;
@@ -285,8 +285,8 @@ public class extratab extends javax.swing.JFrame {
 			}
 	   	}		
 	}
-    
-    //Uçuş numarası verilen uçuşu var ise listeden döndürür.
+
+    //Возвращает рейс из списка, если существует рейс с заданным номером рейса.
     public Flight findFlight(String no) {
     	for(Flight tmp : flights) {
     		if(tmp.getFlightNumber().equals(no)) {
@@ -295,8 +295,8 @@ public class extratab extends javax.swing.JFrame {
     	}
     	return null;
     }
-    
-    //Başlat butonu ile birlikte sistem zamanı başlatılır.
+
+   // Запуск системного времени осуществляется с помощью кнопки //Старт.
     public Thread clock;
     public int start_stop = 1;
     private void start_buttonActionPerformed(java.awt.event.ActionEvent evt) {                        
@@ -319,18 +319,18 @@ public class extratab extends javax.swing.JFrame {
         	clock.start();
         	start_stop = 0;
     	}
-    }                                            
+    }
 
-    //Zamanı duraklatma butonu
+    // Кнопка паузы
     @SuppressWarnings("deprecation")
 	private void pause_buttonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         if(start_stop == 0) {
         	clock.stop();
         	start_stop = 1;
         }
-    }                                            
-    
-    //Zamanı başa alma butonu
+    }
+
+    // Кнопка повторного запуска
     @SuppressWarnings("deprecation")
 	private void stop_buttonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         if(start_stop == 0) {
@@ -342,9 +342,9 @@ public class extratab extends javax.swing.JFrame {
         }
     	
         
-    }                                           
+    }
 
-    //Uçuş izni isteyen uçaklara izin vermek için kullanılan buton
+    //Кнопка, используемая для авторизации самолета, запрашивающего разрешение на полет
 	private void permission_buttonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
     	DefaultTableModel model = (DefaultTableModel) flight_table.getModel();
         
@@ -368,8 +368,8 @@ public class extratab extends javax.swing.JFrame {
         }
         permission_label.setText("");
     }
-    
-	//Uçuşu eğer yerde ise iptal eden buton.
+
+    //Кнопка, отменяющая полет, если он находится на земле.
     private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         DefaultTableModel model = (DefaultTableModel) flight_table.getModel();
         int selected_row = flight_table.getSelectedRow();
@@ -399,9 +399,9 @@ public class extratab extends javax.swing.JFrame {
             }
         }
         writeFile(flights);
-    }                                             
+    }
 
-    //Uçuşa delay eklemek için kullanılan buton.
+    //Кнопка, используемая для добавления задержки в полет.
 	private void delay_buttonActionPerformed(java.awt.event.ActionEvent evt) {                                             
     	DefaultTableModel model = (DefaultTableModel) flight_table.getModel();
         
@@ -444,9 +444,9 @@ public class extratab extends javax.swing.JFrame {
             }
             delay_textbox.setText("");
         }
-    }                                            
-    
-    //Değişken Tanımları    
+    }
+
+    // Определения переменных
     private javax.swing.JButton cancel_button;
     private javax.swing.JButton delay_button;
     private javax.swing.JTextField delay_textbox;

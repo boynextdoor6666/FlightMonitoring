@@ -14,7 +14,7 @@ public class Flight extends Thread implements java.io.Serializable {
 	private Capital takeoffFrom, landTo;
 	private String status = "onGround";
 
-	//Thread'in run fonksiyonunda kontrol için kullanılacak iki değişken, görevleri kalkış ve iniş zamanını kontrol etmek.
+
 	public boolean isDepartureTime = false;
 	public boolean isArrivalTime = false;
 	@Override
@@ -52,7 +52,7 @@ public class Flight extends Thread implements java.io.Serializable {
 		}
 	}
 	
-	//Uçuşun bugün olup olmadığını kontrol eder.
+
 	public boolean isToday() {
 			int i = extratab.cal.get(Calendar.DAY_OF_WEEK);
 			if(i == 1) {

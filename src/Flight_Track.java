@@ -493,7 +493,7 @@ public class Flight_Track extends javax.swing.JFrame {
         return weekdays; 
     }
     
-    //Girilen şehirlerin listede olup olmadığı kontrol edilir. Varsa bu değişkenlere atılır.
+
     private Capital takeoffcity = null, landtocity = null;
     boolean isinCapitals(String takeoff, String landto) {
     	boolean ctrl1 = false, ctrl2 = false;
@@ -511,7 +511,7 @@ public class Flight_Track extends javax.swing.JFrame {
     	return (ctrl1 && ctrl2);
     }
    
-    //Uçuş listesi üzerinde her değişiklik yapıldıktan sonra listeyi dosyaya baştan yazar.
+
     public void writeFile(ArrayList<Flight> flights) {
     	
     	String fileName = "src/flights.dat";
@@ -525,7 +525,7 @@ public class Flight_Track extends javax.swing.JFrame {
     	
     }
     
-    //Şehir listesi üzerinde her değişiklik yapıldıktan sonra listeyi dosyaya baştan yazar.
+
     public void writeFileCapital(ArrayList<Capital> capitals) {
     	
     	String fileName = "src/capitals.dat";
@@ -539,7 +539,7 @@ public class Flight_Track extends javax.swing.JFrame {
     	
     }
     
-    //Flight no'su verilen uçuşu listede bulup döndürür.
+
     public Flight findFlight(String no) {
     	for(Flight tmp : flights) {
     		if(tmp.getFlightNumber().equals(no)) {
@@ -549,7 +549,7 @@ public class Flight_Track extends javax.swing.JFrame {
     	return null;
     }
     
-    ////İsmi verilen capital'i listede bulup döndürür.
+
     private Capital tmp_capital = null;
     public Capital findCapital(String tmp) {
     	for(Capital x : capitals) {
@@ -561,7 +561,7 @@ public class Flight_Track extends javax.swing.JFrame {
     	return null;
     }
     
-	//Arayüz üzerindeki tablo flights.dat dosyası okunarak doldurulur.
+
     @SuppressWarnings("unchecked")
 	public void fillTable() {
     	DefaultTableModel model = (DefaultTableModel) flight_table.getModel();
@@ -584,7 +584,7 @@ public class Flight_Track extends javax.swing.JFrame {
 		}	
     }
     
-    //Uçuş ekleme işlemi gerekli kontrollerin ardından yapılır.
+
 	private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         
         
@@ -664,7 +664,7 @@ public class Flight_Track extends javax.swing.JFrame {
         takentime_textbox.setText("");
     }                                          
     
-	//Uçuş silme işlemini gerekli kontrollerin ardından yapılır.
+
     private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         DefaultTableModel model = (DefaultTableModel) flight_table.getModel();
         int selected_row = flight_table.getSelectedRow();
@@ -691,7 +691,7 @@ public class Flight_Track extends javax.swing.JFrame {
         writeFile(flights);
     }                                             
 
-    //Uçuş üzerinde güncelleme işlemi gerekli kontrollerin ardından yapılır.
+
 	private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         DefaultTableModel model = (DefaultTableModel) flight_table.getModel();
         
@@ -780,7 +780,7 @@ public class Flight_Track extends javax.swing.JFrame {
         takentime_textbox.setText("");
     }                                             
 
-	//Girilen şehir listede zaten yoksa listeye eklenir.
+
     private void addcapital_buttonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
     	String name = add_capital_textbox.getText();
     	
@@ -799,7 +799,7 @@ public class Flight_Track extends javax.swing.JFrame {
     	}
     } 
                                                          
-    //Girilen şehir listede var ise silinir.
+
     private void delete_capital_buttonActionPerformed(java.awt.event.ActionEvent evt) {                                                      
         String name = delete_capital_textbox.getText();
         if(!name.equals("")) {
@@ -815,7 +815,7 @@ public class Flight_Track extends javax.swing.JFrame {
         delete_capital_textbox.setText("");
     }                                                     
 
-    //Girilen similasyon zamanı ve günü gerekli kontrollerden sonra alınır ve extratab nesnesi (GUI) oluşturulur.
+
     private void gotosim_buttonActionPerformed(java.awt.event.ActionEvent evt) {                                               
     	String box = simTime_textbox.getText();
     	
@@ -865,7 +865,7 @@ public class Flight_Track extends javax.swing.JFrame {
     } 
     
                                            
-    //Değişken tanımlamaları                     
+
     private javax.swing.JButton add_button;
     private javax.swing.JTextField add_capital_textbox;
     private javax.swing.JButton addcapital_button;
